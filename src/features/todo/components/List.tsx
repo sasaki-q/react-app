@@ -4,7 +4,7 @@ import { Todo } from "features/todo/type";
 import { Single } from "features/todo/components/Single";
 
 type Props = {
-  fetcher: Fetcher<Todo[]>
+  fetcher: Fetcher<Todo[], number>
 }
   
 const View: FunctionComponent<Props> = ({ fetcher }) => {

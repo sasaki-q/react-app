@@ -1,10 +1,23 @@
-import { AsyncState } from "features/todo/type"
 
-export class Fetcher<T> {
+type AsyncState<T> = 
+    | {
+        state: "promise";
+        value: Promise<T>;
+    }
+    | {
+        state: "resolve";
+        value: T;
+    }
+    | {
+        state: "reject";
+        value: Error;
+    }
+
+export class Fetcher<T, Arg> {
     private state: AsyncState<T>;
 
-    constructor(fetcher: () => Promise<T>) {
-        const value = fetcher().then(
+    constructor(fetcher: (arg: Arg) => Promise<T>, arg: Arg) {
+        const value = fetcher(arg).then(
             res => {
                 this.state = {
                     state: "resolve",

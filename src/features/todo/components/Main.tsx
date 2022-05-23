@@ -3,16 +3,17 @@ import { Button } from "@mui/material";
 import { ErrorBoundary } from "react-error-boundary";
 import { Todo } from "features/todo/type";
 import { useTodos } from "features/todo/useTodo";
-import { Fetcher } from "utils/fetcher";
 import { List } from "features/todo/components/List";
+import { Fetcher } from "utils/fetcher";
+import { Loading } from "utils/loading/Loading";
 import { ErrorFallback } from "utils/error/Error";
 import { myErrorHandler } from "utils/error/handler";
-import { Loading } from "utils/loading/Loading";
 
 const View = () => {
-  const [feacherTodos, setFetcherTodos] = useState<Fetcher<Todo[]> | undefined>();
-  const getTodos = useTodos();
-  const handler = () => setFetcherTodos(new Fetcher(getTodos));
+  const [feacherTodos, setFetcherTodos] = useState<Fetcher<Todo[], number> | undefined>();
+  const { getTodos, getUserTodos } = useTodos();
+  const handler = () => setFetcherTodos(new Fetcher(getUserTodos, 1));
+  
   return (
     <ErrorBoundary
       FallbackComponent={ErrorFallback}

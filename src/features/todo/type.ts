@@ -1,19 +1,7 @@
 export type Todo = {
     id: number;
+    uid: number;
     title: string;
     isDone: boolean;
+    createdAt: string;
 }
-
-export type AsyncState<T> = 
-    | {
-        state: "promise";
-        value: Promise<T>;
-    }
-    | {
-        state: "resolve";
-        value: T;
-    }
-    | {
-        state: "reject";
-        value: Error;
-    }
