@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "rtk/store";
 
 export type ToastInfo = {
-    level: 'success' | 'error' | undefined,
+    level: 'success' | 'error',
     message: string,
     show: boolean,
 }

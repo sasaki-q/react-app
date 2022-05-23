@@ -6,7 +6,7 @@ export const MyToast = () => {
     
   const dispatch = useAppDispatch();
   const toast: ToastInfo = useAppSelector(ToastState);
-  const handleClose = () => dispatch(show({level: undefined, message: ""}));
+  const handleClose = () => dispatch(show({level: toast.level, message: toast.message}));
 
   return (
     <Snackbar open={toast.show} autoHideDuration={1000} onClose={handleClose}>
