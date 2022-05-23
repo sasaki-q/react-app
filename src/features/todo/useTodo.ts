@@ -1,15 +1,12 @@
 import { Todo } from "features/todo/type"
-
-const todos: Array<Todo> = [
-    {id: 1, title: "coding", isDone: true},
-    {id: 2, title: "unit test", isDone: false},
-    {id: 3, title: "integration test", isDone: false},
-]
+import { http } from "utils/http";
 
 export const useTodos = () => {
 
     const getTodos = async(): Promise<Array<Todo>> => {
-        return todos;
+        const res = await http.get('todos/1');
+        console.log(`DEBUG axios get response === ${res.data["todos"]} === ${http.defaults.baseURL}`)
+        return res.data["todos"];
     };
 
     return getTodos;
