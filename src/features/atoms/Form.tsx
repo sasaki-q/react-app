@@ -1,4 +1,4 @@
-import { memo } from "react"
+import { FunctionComponent, memo } from "react"
 import { TextField } from "@mui/material";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
@@ -13,7 +13,7 @@ type Props = {
   error?: FieldError,
 }
 
-const View = (props: Props) => {
+const View: FunctionComponent<Props> = (props) => {
   const {
     id,
     required,

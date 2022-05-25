@@ -14,9 +14,7 @@ export const MainAuth = () => {
 
   const { login } = useAuth()
 
-  const onSubmit: SubmitHandler<LoginDto> = async (data) => {
-      await login(data);
-  }
+  const onSubmit: SubmitHandler<LoginDto> = async (data) => await login(data);
 
   return (
     <Stack spacing={4}>
