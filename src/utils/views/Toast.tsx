@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from 'rtk/hooks'
 import { show, ToastInfo, ToastState } from 'rtk/slices/toast'
 
 export const MyToast = () => {
-    
   const dispatch = useAppDispatch();
+  
   const toast: ToastInfo = useAppSelector(ToastState);
   const handleClose = () => dispatch(show({level: toast.level, message: toast.message}));
 

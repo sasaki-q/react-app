@@ -1,15 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { TodoView } from 'features/todo/components/Main';
-import { MyToast } from "utils/views/Toast"
+import { MyLayout } from 'utils/views/Layout';
+import { MainAuth } from 'features/auth/component/Main';
+import { MainTodo } from 'features/todo/components/Main';
 
 function App() {
   return (
-    <div className="App">
-      <MyToast />
-      <header className="App-header">
-        <TodoView />
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<MyLayout children={<MainAuth/>}/>}/>
+        <Route path='/todo' element={<MyLayout children={<MainTodo/>}/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
