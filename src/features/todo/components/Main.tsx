@@ -7,11 +7,12 @@ import { MyButton } from "features/atoms/Button";
 import { useAuth } from "lib/auth";
 
 export const MainTodo = () => {
-  console.log(useAuth().user);
 
   const [feacherTodos, setFetcherTodos] = useState<Fetcher<Todo[], number> | undefined>();
+
+  const { user } = useAuth();
   const { getUserTodos } = useTodos();
-  const handler = () => setFetcherTodos(new Fetcher(getUserTodos, 1));
+  const handler = () => setFetcherTodos(new Fetcher(getUserTodos, user!.id));
 
   return (
     <>

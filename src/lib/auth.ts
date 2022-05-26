@@ -25,6 +25,8 @@ import storage from 'utils/storage';
   };
 
   export const { AuthProvider, useAuth } = initReactQueryAuth<
-    AuthUser | null,
+    AuthUser | undefined,
+    Error,
+    AuthResponse,
     AuthResponse
   >(authConfig);

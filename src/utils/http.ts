@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import storage from "./storage";
 
 const http: AxiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -7,7 +8,15 @@ const http: AxiosInstance = axios.create({
 })
 
 http.interceptors.request.use(
-    (config: AxiosRequestConfig<any>) => (config),
+    (config: AxiosRequestConfig<any>) => {
+        const token: string | null = storage.getToken()
+
+        if(token && config.headers) {
+            config.headers.Authorization = token;
+        }
+        
+        return config;
+    },
     (err: Error) => (err),
 )
 
