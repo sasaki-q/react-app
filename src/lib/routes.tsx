@@ -1,8 +1,8 @@
 import { useRoutes } from "react-router-dom";
-import { MainAuth } from "features/auth/component/Main";
+import { MainLogin } from "features/login/component/Main";
 import { MainTodo } from 'features/todo/components/Main';
 
 export const MyRoutes = () => useRoutes([
-    {path: "/", element: <MainAuth/>},
+    {path: "/", element: <MainLogin/>},
     {path: "/todo", element: <MainTodo/>},
 ]);

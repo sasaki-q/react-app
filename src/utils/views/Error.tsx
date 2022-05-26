@@ -1,11 +1,18 @@
+import { Stack } from "@mui/material";
+import { MyButton } from "features/atoms/Button";
 import { FallbackProps } from "react-error-boundary";
 
-export const ErrorFallback = ({ error }: FallbackProps) => {
+export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
-    <div>
-      <p>エラーが発生しました</p>
-      <p>{error.message}</p>
-    </div>
+    <Stack spacing={3}>
+      <h6>エラーが発生しました</h6>
+      <h6>{error.message}</h6>
+      <MyButton 
+        title={"もう一度実行する"}
+        size={"large"}
+        onclick={resetErrorBoundary}
+      />
+    </Stack>
   )
 }
 

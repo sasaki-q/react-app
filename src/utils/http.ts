@@ -13,7 +13,7 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
     (res: AxiosResponse<any, any>) => (res),
-    (err: Error) => console.log(`DEBUG interceptors error message === ${err}`),
+    (err: Error) => (err),
 )
 
 export { http }

@@ -4,8 +4,10 @@ import { useTodos } from "features/todo/useTodo";
 import { List } from "features/todo/components/List";
 import { Fetcher } from "utils/fetcher";
 import { MyButton } from "features/atoms/Button";
+import { useAuth } from "lib/auth";
 
 export const MainTodo = () => {
+  console.log(useAuth().user);
 
   const [feacherTodos, setFetcherTodos] = useState<Fetcher<Todo[], number> | undefined>();
   const { getUserTodos } = useTodos();

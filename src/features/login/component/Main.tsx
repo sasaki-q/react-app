@@ -2,19 +2,18 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { Stack } from "@mui/material";
 import { MyForm } from "features/atoms/Form";
 import { MyButton } from "features/atoms/Button";
-import { LoginDto } from "features/auth/type";
-import { useAuth } from "features/auth//useAuth";
+import { LoginDto } from "features/login/type";
+import { useLogin } from "../useLogin";
 
-export const MainAuth = () => {
+export const MainLogin = () => {
   const {
       register,
       handleSubmit,
       formState: { errors },
   } = useForm<LoginDto>();
 
-  const { login } = useAuth()
-
-  const onSubmit: SubmitHandler<LoginDto> = async (data) => await login(data);
+  const { loginFn } = useLogin()
+  const onSubmit: SubmitHandler<LoginDto> = async (data) => await loginFn(data)
 
   return (
     <Stack spacing={4}>
