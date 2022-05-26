@@ -1,23 +1,23 @@
 import { AuthUser } from "features/login/type";
 
-const storagePrefix = 'my_prefix_';
+const prefix = 'prefix_';
+
+const setItem = <T>(name: string, value: T) => 
+  window.localStorage.setItem(prefix + name, JSON.stringify(value));
+
+const getItem = <T>(name: string): T => 
+  JSON.parse(window.localStorage.getItem(prefix + name) as string)
 
 const storage = {
-  setToken: (token: string) => {
-    window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token));
-  },
-  getToken: () => {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefix}token`) as string);
-  },
-  setUser: (user: AuthUser) => {
-    window.localStorage.setItem(`${storagePrefix}user`, JSON.stringify(user));
-  },
-  getUser: () => {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefix}user`) as string) as AuthUser;
-  },
-  clearToken: () => {
-    window.localStorage.removeItem(`${storagePrefix}token`);
-    window.localStorage.removeItem(`${storagePrefix}user`);
+  setToken: (token: string) => setItem("token", token),
+  getToken: () => getItem<string>("token"),
+
+  setUser: (user: AuthUser) => setItem("user", user),
+  getUser: () => getItem<AuthUser>("user"),
+  
+  clearStorage: () => {
+    window.localStorage.removeItem(`${prefix}token`);
+    window.localStorage.removeItem(`${prefix}user`);
   },
 };
 

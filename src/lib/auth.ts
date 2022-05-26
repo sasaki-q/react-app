@@ -15,7 +15,7 @@ import storage from 'utils/storage';
 
   const loadUser = async() => storage.getUser()
   
-  const logoutFn = async() => storage.clearToken();
+  const logoutFn = async() => storage.clearStorage();
 
   const authConfig = {
     registerFn,
