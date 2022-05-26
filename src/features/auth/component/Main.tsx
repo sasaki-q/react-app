@@ -29,8 +29,8 @@ export const MainAuth = () => {
             "email", {
             required: 'email is required',
             pattern: {
-                value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: 'Please enter a valid email',
+              value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Please enter a valid email',
             },
           })
         }
@@ -47,9 +47,9 @@ export const MainAuth = () => {
             "password", {
             required: 'password is required',
             minLength: {
-                value: 8,
-                message: "at least eight characters"
-              }
+              value: 8,
+              message: "at least eight characters"
+            }
           })
         }
         error={errors.password}
