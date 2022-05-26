@@ -4,6 +4,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import { HelmetProvider } from "react-helmet-async"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ErrorFallback, myErrorHandler } from "utils/views/Error"
+import { MyLayout } from "utils/views/Layout"
 import { Loading } from "utils/views/Loading"
 
 const client: QueryClient = new QueryClient();
@@ -13,22 +14,20 @@ type Props = {
 }
 
 export const AppProvider: FunctionComponent<Props> = (props) => (
-  <div className="App">
-    <header className="App-header">
-      <Suspense fallback={<Loading />}>
-        <ErrorBoundary
-          FallbackComponent={ErrorFallback}
-          onError={myErrorHandler}
-        >
-          <HelmetProvider>
-            <QueryClientProvider client={client}>
-              <AuthProvider>
-                {props.children}
-              </AuthProvider>
-            </QueryClientProvider>
-          </HelmetProvider>
-        </ErrorBoundary>
-      </Suspense>
-    </header>
-  </div>
+  <Suspense fallback={<Loading />}>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onError={myErrorHandler}
+    >
+      <HelmetProvider>
+        <QueryClientProvider client={client}>
+          <AuthProvider>
+            <MyLayout>
+              {props.children}
+            </MyLayout>
+          </AuthProvider>
+        </QueryClientProvider>
+      </HelmetProvider>
+    </ErrorBoundary>
+  </Suspense>
 );

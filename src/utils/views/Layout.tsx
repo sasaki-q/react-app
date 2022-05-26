@@ -1,11 +1,11 @@
-import React, { FunctionComponent, memo } from 'react'
+import React, { FunctionComponent } from 'react'
 import { MyToast } from 'utils/views/Toast';
 
 type Props = {
     children: React.ReactNode
 }
 
-const View: FunctionComponent<Props> = (props) => {
+export const MyLayout: FunctionComponent<Props> = (props) => {
   return (
     <div className="App">
       <header className="App-header">
@@ -15,5 +15,3 @@ const View: FunctionComponent<Props> = (props) => {
     </div>
   )
 }
-
-export const MyLayout = memo(View);
