@@ -6,7 +6,7 @@ import { MyText } from 'features/atoms/Text'
 export const NotFound = () => {
   const navigator = useNavigate();
 
-  const hander = () => navigator("/")
+  const handler = () => navigator("/")
 
   return (
     <Stack spacing={3}>
@@ -14,7 +14,7 @@ export const NotFound = () => {
       <MyButton 
         title={"back to previous page"}
         size={"large"}
-        onclick={hander}
+        onclick={handler}
       />
     </Stack>
   )
