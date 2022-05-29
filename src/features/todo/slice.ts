@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Todo } from "features/todo/type";
 import { RootState } from "rtk/store";
 
@@ -13,7 +13,10 @@ const initialState: Todo = {
 export const todoSlice = createSlice({
     name: "todo",
     initialState,
-    reducers: {}
+    reducers: {
+        set: (state, action: PayloadAction<Todo>) => state = action.payload,
+        reset: (state) => state = initialState,
+    }
 }) 
 
 export const TodoState = (state: RootState) => state.todo;
