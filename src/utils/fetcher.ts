@@ -26,7 +26,6 @@ export class Fetcher<T, Arg> {
                 return res
             },
             err => {
-                console.log("error === ", err)
                 this.state = {
                     state: "reject",
                     value: err,

@@ -13,13 +13,13 @@ export const useLogin = () => {
   const dispatch = useAppDispatch();
   const errorHandler = useErrorHandler();
 
-  const loginFn = async (data: LoginDto): Promise<void> => {
+  const loginFn = async (dto: LoginDto): Promise<void> => {
     try{
-      const res = await http.post<AuthResponse>(
+      const res: AuthResponse = await http.post(
         'auth/login', 
-        data,
+        dto,
       );
-      await login(res.data)
+      await login(res)
       dispatch(show({level: "success", message: "success"}))
       navigator("/todo");
     } catch(err) {

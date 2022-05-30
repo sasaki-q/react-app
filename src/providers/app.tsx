@@ -2,12 +2,20 @@ import { AuthProvider } from "lib/auth"
 import React, { FunctionComponent, Suspense } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { HelmetProvider } from "react-helmet-async"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { DefaultOptions, QueryClient, QueryClientProvider } from "react-query"
 import { ErrorFallback, myErrorHandler } from "utils/views/Error"
 import { MyLayout } from "utils/views/Layout"
 import { Loading } from "utils/views/Loading"
 
-const client: QueryClient = new QueryClient();
+const queryConfig: DefaultOptions = {
+  queries: {
+    useErrorBoundary: true,
+    refetchOnWindowFocus: false,
+    retry: false,
+  },
+};
+
+const client: QueryClient = new QueryClient({ defaultOptions: queryConfig });
 
 type Props = {
     children: React.ReactNode

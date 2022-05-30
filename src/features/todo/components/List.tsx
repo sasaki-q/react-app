@@ -1,21 +1,21 @@
 import { FunctionComponent } from "react";
-import { Fetcher } from "utils/fetcher";
+import { useAuth } from "lib/auth";
+import { Loading } from "utils/views/Loading";
 import { MyText } from "features/atoms/Text";
-import { Todo } from "features/todo/type";
 import { Single } from "features/todo/components/Single";
-
-type Props = {
-  fetcher: Fetcher<Todo[], number>
-}
+import { useTodos } from "features/todo/hooks/useQuery";
   
-export const List: FunctionComponent<Props> = ({ fetcher }) => {
-  const todos: Todo[] = fetcher.filterState();
+export const List: FunctionComponent = () => {
+  const { user } = useAuth();
+  const todoQuery = useTodos(user?.id ?? 0);
+
+  if(todoQuery.isLoading) return <Loading/>;
 
   return (
     <ul>
       {
-        todos.length
-          ? todos.map((e) => (<Single key={e.id} id={e.id} title={e.title} isDone={e.isDone}/>))
+        todoQuery?.data?.length
+          ? todoQuery?.data?.map((e) => (<Single key={e.id} id={e.id} title={e.title} isDone={e.isDone}/>))
           : <MyText title={"not exist your todos"}/>
       }
     </ul>

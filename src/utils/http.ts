@@ -17,12 +17,10 @@ http.interceptors.request.use(
         
         return config;
     },
-    (err: Error) => (err),
 )
 
 http.interceptors.response.use(
-    (res: AxiosResponse<any, any>) => (res),
-    (err: Error) => (err),
+    (res: AxiosResponse<any, any>) => res.data,
 )
 
 export { http }
