@@ -15,7 +15,7 @@ const queryConfig: DefaultOptions = {
   },
 };
 
-const client: QueryClient = new QueryClient({ defaultOptions: queryConfig });
+export const queryClient: QueryClient = new QueryClient({ defaultOptions: queryConfig });
 
 type Props = {
     children: React.ReactNode
@@ -28,7 +28,7 @@ export const AppProvider: FunctionComponent<Props> = (props) => (
       onError={myErrorHandler}
     >
       <HelmetProvider>
-        <QueryClientProvider client={client}>
+        <QueryClientProvider client={queryClient}>
           <AuthProvider>
             <MyLayout>
               {props.children}
