@@ -16,12 +16,10 @@ export const useCreate = () => {
   const dispatch = useAppDispatch()
 
   return useMutation<Todo, Error, CreateDto, Promise<void>>({
-    onMutate: async(dto) => await queryClient.cancelQueries("todos"),
+    onMutate: async(_) => await queryClient.cancelQueries("todos"),
 
     onSuccess: async(data) => {
-      await queryClient.invalidateQueries('todos');
-
-      const cache = await queryClient.getQueryData<Todo[]>('todos')
+      const cache = queryClient.getQueryData<Todo[]>('todos')
 
       queryClient.setQueryData(
         "todos",
@@ -29,10 +27,11 @@ export const useCreate = () => {
       )
 
       dispatch(show({level: "success", message: "created"}))
+
+      return cache
     },
 
-    onError: (err, dto, ctx) => {
-      console.log("DEBUG on Error === ", ctx)
+    onError: (_, __, ___) => {
       dispatch(show({level: "error", message: "error"}))
     },
 

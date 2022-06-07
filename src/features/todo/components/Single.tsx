@@ -1,5 +1,9 @@
 import { FunctionComponent, memo } from 'react'
-import { useDialog } from '../hooks/useDialog';
+import { Box, Stack } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useDialog } from 'features/todo/hooks/useDialog';
+import { MyButton } from 'components/atoms/Button';
+import { MyText } from 'components/atoms/Text';
 
 type Props = {
     id: number,
@@ -14,8 +18,17 @@ const View: FunctionComponent<Props> = (props) => {
   const handleOpen = () => showDialog(id);
 
   return (
-    <li onClick={handleOpen}>
-        {`Title: ${title}, IsDone: ${isDone ? "Yes": "No"}`}
+    <li>
+      <Box sx={{display: "flex", justifyContent: "space-between", mt: 3}}>
+        <MyText title={`Title: ${title}, IsDone: ${isDone ? "Yes": "No"}`} variant={"h6"}/>
+        <Box sx={{minWidth: 100}}/>
+        <MyButton
+          title={"Delete"}
+          size={"small"}
+          icon={<DeleteOutlineIcon />}
+          onclick={handleOpen}
+        />
+      </Box>
     </li>
   )
 }

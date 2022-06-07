@@ -8,13 +8,7 @@ type Props = {
 }
 
 export const MyDialog: FunctionComponent<Props> = (props) => {
-  console.log("Dialog")
-
-  const {
-    children,
-    open,
-    handleClose,
-  } = props;
+  const { children, open, handleClose } = props;
 
   return (
     <Dialog open={open} onClose={handleClose}>

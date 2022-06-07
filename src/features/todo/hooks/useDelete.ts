@@ -28,14 +28,9 @@ export const useDelete = () => {
       return cache;
     },
 
-    onSuccess: async(_) => {
-      await queryClient.invalidateQueries('todos');
-  
-      dispatch(show({level: "success", message: "deleted"}));
-    },
+    onSuccess: async(_) => dispatch(show({level: "success", message: "deleted"})),
 
-    onError: (err, _, ctx: Todo[] | undefined) => {
-        console.log("DEBUG onError === ", err, ctx);
+    onError: (_, __, ctx: Todo[] | undefined) => {
         ctx && queryClient.setQueryData("todos", ctx);
         
         dispatch(show({level: "error", message: "error"}));
