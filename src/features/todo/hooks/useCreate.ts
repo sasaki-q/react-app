@@ -10,12 +10,14 @@ type CreateDto = {
     title: string,
 }
 
-const create = (dto: CreateDto): Promise<Todo> => http.post("/todoss/", dto);
+const create = (dto: CreateDto): Promise<Todo> => http.post("/todos/", dto);
 
 export const useCreate = () => {
   const dispatch = useAppDispatch()
 
-  return useMutation({
+  return useMutation<Todo, Error, CreateDto, Promise<void>>({
+    onMutate: async(dto) => await queryClient.cancelQueries("todos"),
+
     onSuccess: async(data) => {
       await queryClient.invalidateQueries('todos');
 
@@ -26,14 +28,16 @@ export const useCreate = () => {
         [...(cache || []), data]
       )
 
-      dispatch(show({level: "success", message: "create todo"}))
+      dispatch(show({level: "success", message: "created"}))
     },
 
-    onMutate: async(dto: CreateDto) => await queryClient.cancelQueries("todos"),
-
-    onError: (err, variables, ctx) => console.log("DEBUG on Error === ", variables),
+    onError: (err, dto, ctx) => {
+      console.log("DEBUG on Error === ", ctx)
+      dispatch(show({level: "error", message: "error"}))
+    },
 
     mutationFn: create,
+    retry: false,
     useErrorBoundary: true,
   })
 }
