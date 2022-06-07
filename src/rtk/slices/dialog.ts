@@ -14,8 +14,8 @@ export const toastSlice = createSlice({
     name: "dialog",
     initialState,
     reducers: {
-        setTodoDialog: (state, action: PayloadAction<number | null>) => {
-            action.payload == null
+        setTodoDialog: (state, action?: PayloadAction<number>) => {
+            action == null
               ? state = { show: !state.show }
               : state = { todoId: action.payload, show: !state.show };
         }

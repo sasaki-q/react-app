@@ -6,10 +6,10 @@ import { http } from "utils/http"
 import { Todo } from "../type"
 
 type DeleteDto = {
-    todoid: number
+    todoId: number
 }
 
-const deleteFn = (dto: DeleteDto):Promise<boolean> => http.delete(`/todos/${dto.todoid}`)
+const deleteFn = (dto: DeleteDto):Promise<boolean> => http.delete(`/todos/${dto.todoId}`)
 
 export const useDelete = () => {
   const dispatch = useAppDispatch()
@@ -22,7 +22,7 @@ export const useDelete = () => {
 
       queryClient.setQueryData(
         "todos",
-        cache?.filter((elm) => elm.id !== dto.todoid)
+        cache?.filter((elm) => elm.id !== dto.todoId)
       );
 
       return cache;
@@ -31,7 +31,7 @@ export const useDelete = () => {
     onSuccess: async(_) => {
       await queryClient.invalidateQueries('todos');
   
-      dispatch(show({level: "success", message: "delete"}));
+      dispatch(show({level: "success", message: "deleted"}));
     },
 
     onError: (err, _, ctx: Todo[] | undefined) => {
