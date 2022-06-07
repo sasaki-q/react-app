@@ -27,6 +27,7 @@ const View: FunctionComponent<Props> = (props) => {
 
   return (
     <TextField
+      id={id}
       required={required}
       label={label}
       type={type}

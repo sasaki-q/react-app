@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import { MyButton } from "features/atoms/Button";
-import { MyForm } from "features/atoms/Form";
+import { MyButton } from "components/atoms/Button";
+import { MyForm } from "components/atoms/Form";
 import { useAuth } from "lib/auth";
 import { memo } from "react"
 import { SubmitHandler, useForm } from "react-hook-form";

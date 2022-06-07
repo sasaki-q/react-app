@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { MyToast } from 'utils/views/Toast';
+import { MyToast } from 'components/elements/Toast';
 
 type Props = {
     children: React.ReactNode

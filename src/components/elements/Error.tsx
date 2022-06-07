@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { MyButton } from "features/atoms/Button";
+import { MyButton } from "components/atoms/Button";
 import { FallbackProps } from "react-error-boundary";
 import { MyLayout } from "./Layout";
 

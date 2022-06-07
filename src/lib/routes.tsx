@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import { MainLogin } from "features/login/component/Main";
 import { MainTodo } from 'features/todo/components/Main';
-import { NotFound } from "utils/views/NotFound";
+import { NotFound } from "components/elements/NotFound";
 
 export const MyRoutes = () => useRoutes([
     {path: "/", element: <MainLogin/>},

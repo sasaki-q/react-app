@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useAuth } from "lib/auth";
-import { Loading } from "utils/views/Loading";
-import { MyText } from "features/atoms/Text";
+import { Loading } from "components/elements/Loading";
+import { MyText } from "components/atoms/Text";
 import { Single } from "features/todo/components/Single";
 import { useTodos } from "features/todo/hooks/useQuery";
   

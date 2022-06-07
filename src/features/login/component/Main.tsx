@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Stack } from "@mui/material";
-import { MyForm } from "features/atoms/Form";
-import { MyButton } from "features/atoms/Button";
+import { MyForm } from "components/atoms/Form";
+import { MyButton } from "components/atoms/Button";
 import { LoginDto } from "features/login/type";
 import { useLogin } from "../useLogin";
 
