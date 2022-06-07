@@ -10,18 +10,18 @@ const initialState: DialogInfo = {
     show: false,
 }
 
-export const toastSlice = createSlice({
-    name: "dialog",
-    initialState,
-    reducers: {
-        setTodoDialog: (state, action?: PayloadAction<number>) => {
-            action == null
-              ? state = { show: !state.show }
-              : state = { todoId: action.payload, show: !state.show };
-        }
+export const dialogSlice = createSlice({
+  name: "dialog",
+  initialState,
+  reducers: {
+    setTodoDialog: (state, action: PayloadAction<number | null>) => {
+      return action.payload == null
+        ? state = { show: !state.show }
+        : state = { todoId: action.payload!, show: !state.show };
     }
+  }
 })
 
 export const DialogState = (state: RootState) => state.dialog;
-export const { setTodoDialog } = toastSlice.actions;
-export const dialogReducer = toastSlice.reducer;
+export const { setTodoDialog } = dialogSlice.actions;
+export const dialogReducer = dialogSlice.reducer;

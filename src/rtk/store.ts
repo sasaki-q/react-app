@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { todoReducer } from 'features/todo/slice';
 import { toastReducer } from 'rtk/slices/toast';
-import { dialogReducer } from './slices/dialog';
+import { dialogReducer } from 'rtk/slices/dialog';
 
 export const store = configureStore({
   reducer: {

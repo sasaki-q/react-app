@@ -1,4 +1,5 @@
 import { FunctionComponent, memo } from 'react'
+import { useDialog } from '../hooks/useDialog';
 
 type Props = {
     id: number,
@@ -8,9 +9,13 @@ type Props = {
 
 const View: FunctionComponent<Props> = (props) => {
   const {id, title, isDone} = props;
+
+  const { showDialog } = useDialog();
+  const handleOpen = () => showDialog(id);
+
   return (
-    <li>
-        {`ID: ${id}, Title: ${title}, IsDone: ${isDone ? "終わってる": "終わってない"}`}
+    <li onClick={handleOpen}>
+        {`Title: ${title}, IsDone: ${isDone ? "Yes": "No"}`}
     </li>
   )
 }

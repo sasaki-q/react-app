@@ -4,10 +4,12 @@ import { Dialog } from '@mui/material'
 type Props = {
     children: React.ReactNode,
     open: boolean,
-    handleClose: () => VoidFunction
+    handleClose: () => void
 }
 
 export const MyDialog: FunctionComponent<Props> = (props) => {
+  console.log("Dialog")
+
   const {
     children,
     open,
